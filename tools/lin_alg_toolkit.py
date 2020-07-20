@@ -28,3 +28,13 @@ def tidy_up(matrix):
                 tmp.append(round(value,3))
         out.append(tmp)
     return out
+
+
+def scalar_multiply(matrix,scalar):
+    """
+    Multiplies matrix by a scalar
+    """
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            matrix[i][j] *= scalar
+    return matrix
