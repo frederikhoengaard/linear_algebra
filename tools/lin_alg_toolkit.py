@@ -17,6 +17,7 @@ def tidy_up(matrix):
     """
     Utility-function to tidy up the contents of a matrix by rounding floats to integers
     where possible or to a maximum of three decimal spaces if value is a floating point.
+    Returns the "tidy" matrix.
     """
     out = []
     for row in matrix:
@@ -32,9 +33,43 @@ def tidy_up(matrix):
 
 def scalar_multiply(matrix,scalar):
     """
-    Multiplies matrix by a scalar
+    Returns input parameter matrix  multiplied by a scalar
     """
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             matrix[i][j] *= scalar
     return matrix
+
+
+
+def dot_product(matrix_A,matrix_B):
+    """
+    Returns the product of matrix_A multiplied by matrix_B in this order. 
+    Returns nothing if product is not defined
+    """
+    # B must have as many rows as A has columns
+    cols_A = len(matrix_A[0])
+    rows_B = len(matrix_B)
+    cols_B = len(matrix_B[0])
+
+    if cols_A != rows_B:
+        return
+
+    B_columns = []   # maybe write a transpose cols function
+    for i in range(cols_B):
+        tmp = []
+        for j in range(rows_B):
+             tmp.append(matrix_B[j][i])
+        B_columns.append(tmp)
+
+    out = []
+    for row in matrix_A:
+        tmp = []
+        for i in range(cols_B):
+            val = 0
+            col_to_multiply = B_columns[i]
+            for j in range(len(col_to_multiply)):
+                val += row[j] * col_to_multiply[j]
+            tmp.append(val)
+        out.append(tmp)   
+    return out
