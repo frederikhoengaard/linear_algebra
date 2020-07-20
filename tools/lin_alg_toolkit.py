@@ -76,7 +76,10 @@ def dot_product(matrix_A,matrix_B):
 
 
 
-def create_identity_matrix(order):
+def create_identity_matrix(order: int):
+    """
+    Returns the identity matrix of a given order as a list of lists.
+    """
     out = []
     for i in range(order):
         tmp = []
