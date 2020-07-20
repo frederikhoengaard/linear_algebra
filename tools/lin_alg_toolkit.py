@@ -45,9 +45,9 @@ def scalar_multiply(matrix,scalar):
 def dot_product(matrix_A,matrix_B):
     """
     Returns the product of matrix_A multiplied by matrix_B in this order. 
-    Returns nothing if product is not defined
+    Returns nothing if product is not defined - that is matrix_A not having
+    as many columns as matrix_B has rows.
     """
-    # B must have as many rows as A has columns
     cols_A = len(matrix_A[0])
     rows_B = len(matrix_B)
     cols_B = len(matrix_B[0])
@@ -72,4 +72,18 @@ def dot_product(matrix_A,matrix_B):
                 val += row[j] * col_to_multiply[j]
             tmp.append(val)
         out.append(tmp)   
+    return out
+
+
+
+def create_identity_matrix(order):
+    out = []
+    for i in range(order):
+        tmp = []
+        for j in range(order):
+            if i == j:
+                tmp.append(1)
+            else:
+                tmp.append(0)
+        out.append(tmp)
     return out
