@@ -1,2 +1,2 @@
-# lin_alg_python
+# Linear algebra with Python
  
