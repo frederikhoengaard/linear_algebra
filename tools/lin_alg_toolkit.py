@@ -106,6 +106,9 @@ def create_identity_matrix(order: int):
 
 
 def reduced_row_echelon(augmented_matrix):
+    """
+
+    """
     m,n = [len(augmented_matrix),len(augmented_matrix[0])]
     n_variables = n - 1
     evaluated_rows = []
@@ -156,9 +159,8 @@ def reduced_row_echelon(augmented_matrix):
 
 
 def main():
-    A = read_matrix('A3.txt')
-    B = read_matrix('B3.txt')
-    for line in dot_product(A,B):
+    A = read_matrix('input3.txt')
+    for line in reduced_row_echelon(A):
         print(line)
 
 
