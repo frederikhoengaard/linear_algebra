@@ -158,7 +158,11 @@ def reduced_row_echelon(augmented_matrix):
 
 def invert_matrix(matrix):
     """
-
+    Takes a matrix as parameter, returns nothing if parameter matrix is nonsquare and thus non-invertible.
+    The function then proceeds to check if the equation system has exactly one solution, and if not it will return 
+    nothing as the matrix is non-invertible. 
+    Finally it will adjoin the input parameter matrix with its corresponding identity matrix and reduce it with
+    Gauss-Jordan elimination in order to return the inverted matrix.
     """
     m = len(matrix)
     n = len(matrix[0])
