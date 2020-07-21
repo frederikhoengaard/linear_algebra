@@ -114,7 +114,7 @@ def create_identity_matrix(order: int):
 
 
 def main():
-    A = read_matrix('transpose_1.txt')
+    A = read_matrix('transpose_3.txt')
     for line in transpose_matrix(A):
         print(line)
 
