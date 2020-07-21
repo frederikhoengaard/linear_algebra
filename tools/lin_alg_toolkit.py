@@ -194,7 +194,7 @@ def invert_matrix(matrix):
 
 
 def main():
-    A = read_matrix('invert-1.txt')
+    A = read_matrix('invert-3.txt')
     for line in A:
         print(line)
     if invert_matrix(A):
