@@ -108,3 +108,17 @@ def create_identity_matrix(order: int):
                 tmp.append(0)
         out.append(tmp)
     return out
+
+
+
+
+
+def main():
+    A = read_matrix('transpose_1.txt')
+    for line in transpose_matrix(A):
+        print(line)
+
+
+
+if __name__ == '__main__':
+    main()
