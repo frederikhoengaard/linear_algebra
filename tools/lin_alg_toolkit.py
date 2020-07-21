@@ -31,6 +31,24 @@ def tidy_up(matrix):
     return out
 
 
+
+def transpose_matrix(matrix):
+    """
+    Transposes the input matrix by interchanging the rows and columns. Returns the 
+    transposed matrix.
+    """    
+    m = len(matrix)
+    n = len(matrix[0])
+    out = []
+    for i in range(n):
+        row = []
+        for j in range(m):
+            row.append(matrix[j][i])
+        out.append(row)
+    return out
+
+
+
 def scalar_multiply(matrix,scalar):
     """
     Returns input parameter matrix  multiplied by a scalar
