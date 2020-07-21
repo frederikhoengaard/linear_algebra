@@ -73,19 +73,14 @@ def dot_product(matrix_A,matrix_B):
     if cols_A != rows_B:
         return
 
-    B_columns = []   # maybe write a transpose cols function
-    for i in range(cols_B):
-        tmp = []
-        for j in range(rows_B):
-             tmp.append(matrix_B[j][i])
-        B_columns.append(tmp)
+    B_transposed  = transpose_matrix(matrix_B)
 
     out = []
     for row in matrix_A:
         tmp = []
         for i in range(cols_B):
             val = 0
-            col_to_multiply = B_columns[i]
+            col_to_multiply = B_transposed[i]
             for j in range(len(col_to_multiply)):
                 val += row[j] * col_to_multiply[j]
             tmp.append(val)
