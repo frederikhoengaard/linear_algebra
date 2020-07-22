@@ -4,9 +4,13 @@
 
 def read_matrix(filename):
     """
-    Reads a .txt-file containing whitespace-separated numeric values. Each line 
-    of the text file will represent a row in the returned matrix. Matrix is returned
-    as a list of lists, where each nested list corresponds to a row of the input data.
+    Reads a .txt-file containing whitespace-separated numeric values in the following form:
+    2 3 4 3
+    1 5 2 7 
+    4 1 3 2
+    ...
+    Where each line of the text file will represent a row in the returned matrix. The matrix 
+    is returned as a list of lists, where each nested list corresponds to a row of the input data.
     """
     infile = open(filename,'r')
     return [list(map(float,row.split())) for row in infile.readlines()]
