@@ -180,12 +180,12 @@ def invert_matrix(matrix):
     reduced_matrix = reduced_row_echelon(reduced_matrix)
     
     for row in reduced_matrix: # check for zero-row
-        invertable = False
+        invertible = False
         for value in row:
             if value != 0:
-                invertable = True
-        if not invertable:
-            print('not invertable')
+                invertible = True
+        if not invertible:
+            print('not invertible')
             return
     
     adjoined_matrix = []
@@ -212,7 +212,7 @@ def least_squares_regression(matrix):
     an x,y coordinate - read_matrix() can be used to this end. 
     
     The function then sorts the coordinates in ascending order and performs the regression,
-    returning a list containing a and b from the regression line y = b + ax
+    returning a list containing the slope a, intercept b and sum of squared errors from the regression line y = b + ax + e
     """
     matrix.sort()
 
@@ -226,10 +226,18 @@ def least_squares_regression(matrix):
     Y = [[coordinate[1]] for coordinate in matrix]
     XTY = dot_product(X_transposed,Y)
 
-    # Invert XTX
+    # Invert XTX, define slope coefficient a and intercept b
     XTX_inverted = invert_matrix(XTX)
     results = tidy_up(dot_product(XTX_inverted,XTY))
-    return [results[0][0],results[1][0]]
+    a = results[1][0]
+    b = results[0][0]
+
+    # Calculate sum of squared errors
+    error_sum = 0
+    for coordinate in matrix:
+        print(coordinate)
+        error_sum += ((b + coordinate[0] * a) - coordinate[1]) ** 2
+    return [b,a,error_sum]
 
 
 
