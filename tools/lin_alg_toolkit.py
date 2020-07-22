@@ -55,8 +55,8 @@ def transpose_matrix(matrix):
 
 def matrix_addition(matrix_A,matrix_B):
     """
-    Returns the sum of two equal matrices. If the input parameter matrices are not equal
-    nothing is returned.
+    Returns the sum of two equal-sized matrices. If the input parameter matrices are not of equal
+    size nothing is returned.
     """
     m_1 = len(matrix_A)
     n_1 = len(matrix_A[0])
@@ -78,8 +78,8 @@ def matrix_addition(matrix_A,matrix_B):
 
 def matrix_subtraction(matrix_A,matrix_B):
     """
-    Returns the difference between two equal matrices. If the input parameter matrices are not equal
-    nothing is returned.
+    Returns the difference between two equal-sized matrices. If the input parameter matrices are not of equal
+    size nothing is returned.
     """
     m_1 = len(matrix_A)
     n_1 = len(matrix_A[0])
