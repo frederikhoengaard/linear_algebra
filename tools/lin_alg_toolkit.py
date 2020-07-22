@@ -15,22 +15,6 @@ def read_matrix(filename):
     infile = open(filename,'r')
     return [list(map(float,row.split())) for row in infile.readlines()]
 
-
-
-def read_coordinates(filename):
-    """
-    This function takes a list of coordinates from a .txt file in the form of:
-    1 2
-    3 5
-    ...
-    where each line of the input file corresponds to a x,y coordinate. The function
-    returns the input data as a matrix in the form of a list of nested list, where
-    each nested list is an x,y coordinate.
-    """
-    infile = open(filename,'r')
-    coordinates = [list(map(float,row.split())) for row in infile.readlines()]
-    return sorted(coordinates)
-
 # we need a validation function for read_matrix
 
 def tidy_up(matrix):
