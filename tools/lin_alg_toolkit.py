@@ -23,7 +23,7 @@ def tidy_up(matrix):
     where possible or to a maximum of three decimal spaces if value is a floating point.
     Returns the "tidy" matrix.
     """
-    out = []
+    tidier_matrix = []
     for row in matrix:
         tmp = []
         for value in row:
@@ -31,8 +31,8 @@ def tidy_up(matrix):
                 tmp.append(round(value))
             else:
                 tmp.append(round(value,3))
-        out.append(tmp)
-    return out
+        tidier_matrix.append(tmp)
+    return tidier_matrix
 
 
 
@@ -43,13 +43,36 @@ def transpose_matrix(matrix):
     """    
     m = len(matrix)
     n = len(matrix[0])
-    out = []
+    transposed_matrix = []
     for i in range(n):
         row = []
         for j in range(m):
             row.append(matrix[j][i])
-        out.append(row)
-    return out
+        transposed_matrix.append(row)
+    return transposed_matrix
+
+
+
+def matrix_addition(matrix_A,matrix_B):
+    """
+    Returns the sum of two equal matrices. If the input parameter matrices are not equal
+    nothing is returned.
+    """
+    m_1 = len(matrix_A)
+    n_1 = len(matrix_A[0])
+    m_2 = len(matrix_B)
+    n_2 = len(matrix_B[0])
+
+    if m_1 != m_2 or n_1 != n_2:
+        return
+
+    matrix_sum = []
+    for i in range(m_1):
+        row = []
+        for j in range(n_1):
+            row.append(matrix_A[i][j] + matrix_B[i][j])
+        matrix_sum.append(row)
+    return matrix_sum
 
 
 
@@ -166,6 +189,7 @@ def invert_matrix(matrix):
     Takes a matrix as parameter, returns nothing if parameter matrix is nonsquare and thus non-invertible.
     The function then proceeds to check if the equation system has exactly one solution, and if not it will return 
     nothing as the matrix is non-invertible. 
+    
     Finally it will adjoin the input parameter matrix with its corresponding identity matrix and reduce it with
     Gauss-Jordan elimination in order to return the inverted matrix.
     """
@@ -272,11 +296,14 @@ def least_squares_regression(matrix):
 
 
 def main():
-    A = read_matrix('test_data/test_polynomial_curve_fitting/1.3_ex2.txt')
+    A = read_matrix('test_data/test_matrix_addition/2.1_ex2-1.txt')
     for line in A:
         print(line)
     print()
-    print(polynomial_curve_fitting(A))
+    B = read_matrix('test_data/test_matrix_addition/2.1_ex2-2.txt')
+    
+    for line in matrix_addition(A,B):
+        print(line)
 
 
 if __name__ == '__main__':
