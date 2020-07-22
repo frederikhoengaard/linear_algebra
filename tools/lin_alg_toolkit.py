@@ -201,6 +201,38 @@ def invert_matrix(matrix):
     return inverted_matrix
 
 
+"""
+APPLICATIONS
+"""
+
+def least_squares_regression(matrix):
+    """
+    This function takes a list of nested lists as its input parameter
+    where each nested list should have two numeric value entries representing
+    an x,y coordinate - read_matrix() can be used to this end. 
+    
+    The function then sorts the coordinates in ascending order and performs the regression,
+    returning a list containing a and b from the regression line y = b + ax
+    """
+    matrix.sort()
+
+    X = [[1,coordinate[0]] for coordinate in matrix]
+    X_transposed = transpose_matrix(X)
+
+    # Calculate X^T * X
+    XTX = dot_product(X_transposed,X)
+
+    # Calculate X^T * Y
+    Y = [[coordinate[1]] for coordinate in matrix]
+    XTY = dot_product(X_transposed,Y)
+
+    # Invert XTX
+    XTX_inverted = invert_matrix(XTX)
+    results = tidy_up(dot_product(XTX_inverted,XTY))
+    return [results[0][0],results[1][0]]
+
+
+
 
 def main():
     A = read_matrix('invert-3.txt')
