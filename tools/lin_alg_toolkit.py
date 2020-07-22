@@ -5,9 +5,9 @@
 def read_matrix(filename):
     """
     Reads a .txt-file containing whitespace-separated numeric values in the following form:
-    2 3 4 3
-    1 5 2 7 
-    4 1 3 2
+    3 3 -2 11
+    2 0 3 -1
+    -1 -2 0 -5
     ...
     Where each line of the text file will represent a row in the returned matrix. The matrix 
     is returned as a list of lists, where each nested list corresponds to a row of the input data.
