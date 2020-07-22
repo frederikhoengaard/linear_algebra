@@ -205,6 +205,36 @@ def invert_matrix(matrix):
 APPLICATIONS
 """
 
+def polynomial_curve_fitting(matrix):
+    """
+    This function takes a list of nested lists as its input parameter
+    where each nested list should have two numeric value entries representing
+    an x,y coordinate - read_matrix() can be used to this end. 
+
+    The function sorts the input coordinates in ascending order, chooses an n-degree polynomial
+    where n is equal to one less than the number of coordinates and creates as system of linear
+    equations on the basis of the coordinates and the polynomial as an augmented matrix of the system.
+
+    Solving the equations yields the polynomial function which is returned as a list of coefficients of the form
+    p(x) = b + a_1x + a_2x^2 + ... + a_nx^n
+    """
+    matrix.sort()
+    n_coordinates = len(matrix)
+
+    augmented_matrix = []
+    for i in range(n_coordinates):
+        row = [1]
+        x,y = matrix[i]
+        for j in range(1,n_coordinates):
+            row.append(x ** j)
+        row.append(y)
+        augmented_matrix.append(row)
+
+    augmented_matrix = reduced_row_echelon(augmented_matrix)
+    return [row[-1] for row in augmented_matrix]
+
+
+
 def least_squares_regression(matrix):
     """
     This function takes a list of nested lists as its input parameter
@@ -242,12 +272,11 @@ def least_squares_regression(matrix):
 
 
 def main():
-    A = read_matrix('test_data/test_reduced_row_echelon/1.2_42.txt')
+    A = read_matrix('test_data/test_polynomial_curve_fitting/1.3_ex2.txt')
     for line in A:
         print(line)
     print()
-    for line in reduced_row_echelon(A):
-        print(line)
+    print(polynomial_curve_fitting(A))
 
 
 if __name__ == '__main__':
