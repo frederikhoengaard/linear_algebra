@@ -235,7 +235,6 @@ def least_squares_regression(matrix):
     # Calculate sum of squared errors
     error_sum = 0
     for coordinate in matrix:
-        print(coordinate)
         error_sum += ((b + coordinate[0] * a) - coordinate[1]) ** 2
     return [b,a,error_sum]
 
