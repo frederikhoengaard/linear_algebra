@@ -50,8 +50,7 @@ def transpose_matrix(matrix):
     Transposes the input matrix by interchanging the rows and columns. Returns the 
     transposed matrix.
     """    
-    m = len(matrix)
-    n = len(matrix[0])
+    m,n = get_size(matrix)
     transposed_matrix = []
     for i in range(n):
         row = []
@@ -90,10 +89,8 @@ def matrix_subtraction(matrix_A,matrix_B):
     Returns the difference between two equal-sized matrices. If the input parameter matrices are not of equal
     size nothing is returned.
     """
-    m_1 = len(matrix_A)
-    n_1 = len(matrix_A[0])
-    m_2 = len(matrix_B)
-    n_2 = len(matrix_B[0])
+    m_1,n_1 = get_size(matrix_A)
+    m_2,n_2 = get_size(matrix_B)
 
     if m_1 != m_2 or n_1 != n_2:
         return
