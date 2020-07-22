@@ -76,6 +76,29 @@ def matrix_addition(matrix_A,matrix_B):
 
 
 
+def matrix_subtraction(matrix_A,matrix_B):
+    """
+    Returns the difference between two equal matrices. If the input parameter matrices are not equal
+    nothing is returned.
+    """
+    m_1 = len(matrix_A)
+    n_1 = len(matrix_A[0])
+    m_2 = len(matrix_B)
+    n_2 = len(matrix_B[0])
+
+    if m_1 != m_2 or n_1 != n_2:
+        return
+
+    matrix_sum = []
+    for i in range(m_1):
+        row = []
+        for j in range(n_1):
+            row.append(matrix_A[i][j] - matrix_B[i][j])
+        matrix_sum.append(row)
+    return matrix_sum
+
+
+
 def scalar_multiply(matrix,scalar):
     """
     Returns input parameter matrix  multiplied by a scalar
