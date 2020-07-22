@@ -17,6 +17,15 @@ def read_matrix(filename):
 
 # we need a validation function for read_matrix
 
+def get_size(matrix):
+    """
+    Returns a list [m,n] where m is the number of rows and n is the number of columns of the input
+    matrix.
+    """
+    return [len(matrix),len(matrix[0])]
+
+
+
 def tidy_up(matrix):
     """
     Utility-function to tidy up the contents of a matrix by rounding floats to integers
@@ -263,7 +272,7 @@ def polynomial_curve_fitting(matrix):
     equations on the basis of the coordinates and the polynomial as an augmented matrix of the system.
 
     Solving the equations yields the polynomial function which is returned as a list of coefficients of the form
-    p(x) = b + a_1x + a_2x^2 + ... + a_nx^n
+    p(x) = a_0 + a_1x + a_2x^2 + ... + a_nx^n
     """
     matrix.sort()
     n_coordinates = len(matrix)
