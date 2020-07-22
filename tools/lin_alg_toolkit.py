@@ -242,13 +242,12 @@ def least_squares_regression(matrix):
 
 
 def main():
-    A = read_matrix('invert-3.txt')
+    A = read_matrix('test_data/test_reduced_row_echelon/1.2_42.txt')
     for line in A:
         print(line)
-    if invert_matrix(A):
-        for line in invert_matrix(A):
-            print(line)
-
+    print()
+    for line in reduced_row_echelon(A):
+        print(line)
 
 
 if __name__ == '__main__':
