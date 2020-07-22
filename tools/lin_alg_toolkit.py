@@ -66,18 +66,16 @@ def matrix_addition(matrix_A,matrix_B):
     Returns the sum of two equal-sized matrices. If the input parameter matrices are not of equal
     size nothing is returned.
     """
-    m_1 = len(matrix_A)
-    n_1 = len(matrix_A[0])
-    m_2 = len(matrix_B)
-    n_2 = len(matrix_B[0])
-
-    if m_1 != m_2 or n_1 != n_2:
+    m_A, n_A = get_size(matrix_A)
+    m_B, n_B = get_size(matrix_B)
+    
+    if m_A != m_B or n_A != n_B:
         return
 
     matrix_sum = []
-    for i in range(m_1):
+    for i in range(m_A):
         row = []
-        for j in range(n_1):
+        for j in range(n_A):
             row.append(matrix_A[i][j] + matrix_B[i][j])
         matrix_sum.append(row)
     return matrix_sum
@@ -222,8 +220,7 @@ def invert_matrix(matrix):
     Finally it will adjoin the input parameter matrix with its corresponding identity matrix and reduce it with
     Gauss-Jordan elimination in order to return the inverted matrix.
     """
-    m = len(matrix)
-    n = len(matrix[0])
+    m,n = get_size(matrix)
     if m != n: # nonsquare matrices do not have inverses
         return
     identity_matrix = create_identity_matrix(m)
