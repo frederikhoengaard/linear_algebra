@@ -107,10 +107,11 @@ def scalar_multiply(matrix,scalar):
     """
     Returns input parameter matrix  multiplied by a scalar
     """
+    scalar_multiplied_matrix = [row for row in matrix]
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
-            matrix[i][j] *= scalar
-    return matrix
+            scalar_multiplied_matrix[i][j] *= scalar
+    return scalar_multiplied_matrix
 
 
 
