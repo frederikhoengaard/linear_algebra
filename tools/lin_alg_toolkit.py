@@ -18,6 +18,7 @@ def read_matrix(filename):
         return matrix
 
 
+    
 def _validate(matrix):
     """
     Utility function to validate whether a matrix has an equal number of entries in each row. Returns
