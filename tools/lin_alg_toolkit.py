@@ -13,9 +13,21 @@ def read_matrix(filename):
     is returned as a list of lists, where each nested list corresponds to a row of the input data.
     """
     infile = open(filename,'r')
-    return [list(map(float,row.split())) for row in infile.readlines()]
+    matrix = [list(map(float,row.split())) for row in infile.readlines()]
+    if _validate(matrix):
+        return matrix
 
-# we need a validation function for read_matrix
+
+def _validate(matrix):
+    """
+    Utility function to validate whether a matrix has an equal number of entries in each row. 
+    """
+    row_lengths = set()
+    for row in matrix:
+        row_lengths.add(len(row))
+    return len(row_lengths) == 1
+
+
 
 def get_size(matrix):
     """
