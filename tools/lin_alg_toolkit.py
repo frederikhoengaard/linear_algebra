@@ -107,13 +107,13 @@ def matrix_subtraction(matrix_A,matrix_B):
     if m_1 != m_2 or n_1 != n_2:
         return
 
-    matrix_sum = []
+    matrix_difference = []
     for i in range(m_1):
         row = []
         for j in range(n_1):
             row.append(matrix_A[i][j] - matrix_B[i][j])
-        matrix_sum.append(row)
-    return matrix_sum
+        matrix_difference.append(row)
+    return matrix_difference
 
 
 
