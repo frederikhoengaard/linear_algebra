@@ -13,7 +13,7 @@ def read_matrix(filename):
     is returned as a list of lists, where each nested list corresponds to a row of the input data.
     """
     infile = open(filename,'r')
-    matrix = [list(map(float,row.split())) for row in infile.readlines()]
+    matrix = [list(map(float,line.split())) for line in infile.readlines()]
     if _validate(matrix):
         return matrix
 
