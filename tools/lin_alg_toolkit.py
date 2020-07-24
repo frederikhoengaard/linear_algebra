@@ -66,8 +66,8 @@ def matrix_addition(matrix_A,matrix_B):
     Returns the sum of two equal-sized matrices. If the input parameter matrices are not of equal
     size nothing is returned.
     """
-    m_A, n_A = get_size(matrix_A)
-    m_B, n_B = get_size(matrix_B)
+    m_A,n_A = get_size(matrix_A)
+    m_B,n_B = get_size(matrix_B)
 
     if m_A != m_B or n_A != n_B:
         return
@@ -122,8 +122,7 @@ def dot_product(matrix_A,matrix_B):
     as many columns as matrix_B has rows.
     """
     cols_A = len(matrix_A[0])
-    rows_B = len(matrix_B)
-    cols_B = len(matrix_B[0])
+    rows_B,cols_B = get_size(matrix_B)
 
     if cols_A != rows_B:
         return
@@ -254,26 +253,29 @@ def invert_matrix(matrix):
 
 
 
-    def determinant(matrix):
-        m,n = get_size(matrix)
-        # maybe also consider m = n = 1
-        if m == 2:
-            val = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
-            return val
-        else:
-            det = 0
-            new_matrix = [row for row in matrix[1:]]
-            new_matrix = transpose_matrix(new_matrix)
-            for i in range(n):
-                pivot = matrix[0][i]     
-                cols_to_select = [j for j in range(n) if j != i]
-                minor_matrix = transpose_matrix([new_matrix[col] for col in cols_to_select]) 
+def determinant(matrix):
+    """
+    
+    """
+    m,n = get_size(matrix)
+    # maybe also consider m = n = 1
+    if m == 2:
+        val = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+        return val
+    else:
+        det = 0
+        new_matrix = [row for row in matrix[1:]]
+        new_matrix = transpose_matrix(new_matrix)
+        for i in range(n):
+            pivot = matrix[0][i]     
+            cols_to_select = [j for j in range(n) if j != i]
+            minor_matrix = transpose_matrix([new_matrix[col] for col in cols_to_select]) 
 
-                if i % 2 == 0: # cofactor is positive
-                    det += pivot * determinant(minor_matrix)
-                else: # cofactor is negative
-                    det -= pivot * determinant(minor_matrix)         
-            return det
+            if i % 2 == 0: # cofactor is positive
+                det += pivot * determinant(minor_matrix)
+            else: # cofactor is negative
+                det -= pivot * determinant(minor_matrix)         
+        return det
 
 """
 APPLICATIONS
