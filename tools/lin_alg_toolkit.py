@@ -253,6 +253,28 @@ def invert_matrix(matrix):
     return inverted_matrix
 
 
+
+    def determinant(matrix):
+        m,n = get_size(matrix)
+        # maybe also consider m = n = 1
+        if m == 2:
+            val = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+            return val
+        else:
+            det = 0
+            new_matrix = [row for row in matrix[1:]]
+            new_matrix = transpose_matrix(new_matrix)
+            for i in range(n):
+                pivot = matrix[0][i]     
+                cols_to_select = [j for j in range(n) if j != i]
+                minor_matrix = transpose_matrix([new_matrix[col] for col in cols_to_select]) 
+
+                if i % 2 == 0: # cofactor is positive
+                    det += pivot * determinant(minor_matrix)
+                else: # cofactor is negative
+                    det -= pivot * determinant(minor_matrix)         
+            return det
+
 """
 APPLICATIONS
 """
