@@ -38,6 +38,8 @@ def get_size(matrix):
     """
     return [len(matrix),len(matrix[0])]
 
+
+
 def get_rank(matrix):
     """
     Rewrites a matrix to row-echelon form, counts the number of non-zero rows 
@@ -250,6 +252,7 @@ def invert_matrix(matrix):
     Gauss-Jordan elimination in order to return the inverted matrix.
     """
     m,n = get_size(matrix)
+    assert m == n, "Input matrix is not square and cannot be inverted"
     if m != n: # nonsquare matrices do not have inverses
         return
     identity_matrix = create_identity_matrix(m)
