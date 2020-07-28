@@ -193,7 +193,7 @@ def reduced_row_echelon(matrix):
 
     """
     augmented_matrix = [row for row in matrix]
-    m,n = [len(augmented_matrix),len(augmented_matrix[0])]
+    m,n = get_size(augmented_matrix)
     n_variables = n - 1
     evaluated_rows = []
 
