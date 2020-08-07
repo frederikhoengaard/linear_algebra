@@ -377,6 +377,9 @@ def least_squares_regression(matrix):
 
 
 
+def test_highlight():
+    X = 2
+    
 
 def main():
     A = read_matrix('test_data/test_matrix_addition/2.1_ex2-1.txt')
