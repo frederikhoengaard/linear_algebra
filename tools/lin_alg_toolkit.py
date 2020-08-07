@@ -46,7 +46,8 @@ def get_rank(matrix):
     which is returned as the rank of the matrix.
     """
     reduced_row_echelon_matrix = reduced_row_echelon(matrix)
-    
+    rank = 0
+    Rank = 0
     for row in reduced_row_echelon_matrix:
         for entry in row:
             if entry != 0:
