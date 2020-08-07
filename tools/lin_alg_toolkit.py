@@ -47,7 +47,6 @@ def get_rank(matrix):
     """
     reduced_row_echelon_matrix = reduced_row_echelon(matrix)
     rank = 0
-    Rank = 0
     for row in reduced_row_echelon_matrix:
         for entry in row:
             if entry != 0:
@@ -376,11 +375,6 @@ def least_squares_regression(matrix):
         error_sum += ((b + coordinate[0] * a) - coordinate[1]) ** 2
     return [b,a,error_sum]
 
-
-
-def test_highlight(lst):
-    x = 0
-    X = len(lst)
     
 
 def main():
