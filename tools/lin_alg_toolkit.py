@@ -46,7 +46,7 @@ def get_rank(matrix):
     which is returned as the rank of the matrix.
     """
     reduced_row_echelon_matrix = reduced_row_echelon(matrix)
-    rank = 0
+    
     for row in reduced_row_echelon_matrix:
         for entry in row:
             if entry != 0:
@@ -378,6 +378,7 @@ def least_squares_regression(matrix):
 
 
 def test_highlight(lst):
+    x = 0
     X = len(lst)
     
 
