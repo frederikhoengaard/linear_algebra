@@ -377,8 +377,8 @@ def least_squares_regression(matrix):
 
 
 
-def test_highlight():
-    X = 2
+def test_highlight(lst):
+    X = len(lst)
     
 
 def main():
