@@ -1,6 +1,6 @@
 import random
 
-variable_values = [1,-1,2,1.5,0]
+variable_values = [1,-1,0]
 var_list = []
 records = {}
 
