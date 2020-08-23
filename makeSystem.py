@@ -1,6 +1,6 @@
 import random
 
-variable_values = [1,-1,0]
+variable_values = [1,-1,2]
 var_list = []
 records = {}
 
@@ -11,7 +11,7 @@ for key in sorted(records.keys()):
     #print(key,records[key])
     var_list.append((key,records[key]))
 
-n_equations_to_make = len(variable_values)
+n_equations_to_make = len(variable_values)  
 
 #print(var_list)
 for j in range(3):
