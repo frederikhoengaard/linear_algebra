@@ -289,8 +289,10 @@ def determinant(matrix):
     
     """
     m,n = get_size(matrix)
-    # maybe also consider m = n = 1
-    if m == 2:
+
+    if m == 1 and n == 1:
+        return matrix[0]
+    elif m == 2:
         val = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
         return val
     else:
@@ -378,15 +380,10 @@ def least_squares_regression(matrix):
     
 
 def main():
-    A = read_matrix('test_data/test_matrix_addition/2.1_ex2-1.txt')
-    for line in A:
-        print(line)
-    print()
-    B = read_matrix('test_data/test_matrix_addition/2.1_ex2-2.txt')
+    A = read_matrix('test_data/test_determinant/3.1_1.txt')
+   # print(get_size(A))
     
-    for line in matrix_addition(A,B):
-        print(line)
-
+    print(determinant(A))
 
 if __name__ == '__main__':
     main()
