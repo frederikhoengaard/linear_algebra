@@ -380,7 +380,7 @@ def least_squares_regression(matrix):
     
 
 def main():
-    A = read_matrix('test_data/test_determinant/3.1_15.txt')
+    A = read_matrix('test_data/test_determinant/3.1_37.txt')
    # print(get_size(A))
     
     print(determinant(A))
