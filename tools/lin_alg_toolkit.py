@@ -56,7 +56,7 @@ def get_rank(matrix: list) -> int:
 
 
 
-def tidy_up(matrix: -> list) -> list:
+def tidy_up(matrix: list) -> list:
     """
     Utility-function to tidy up the contents of a matrix by rounding floats to integers
     where possible or to a maximum of three decimal spaces if value is a floating point.
@@ -291,30 +291,58 @@ def determinant(matrix: list) -> float:
     """
     m,n = get_size(matrix)
 
-    if m == 1 and n == 1:
-        return matrix[0]
-    elif m == 2:
-        val = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
-        return val
+    if m != n:
+        raise ValueError("Non-square matrices do not have determinants!") 
+    
     else:
-        det = 0
-        new_matrix = [row for row in matrix[1:]]
-        new_matrix = transpose_matrix(new_matrix)
-        for i in range(n):
-            pivot = matrix[0][i]     
-            cols_to_select = [j for j in range(n) if j != i]
-            minor_matrix = transpose_matrix([new_matrix[col] for col in cols_to_select]) 
+        if m == 1 and n == 1:
+            return matrix[0]
 
-            if i % 2 == 0: # cofactor is positive
-                det += pivot * determinant(minor_matrix)
-            else: # cofactor is negative
-                det -= pivot * determinant(minor_matrix)         
-        return det
+        elif m == 2:
+            val = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+            return val
+
+        else:
+            det = 0
+            new_matrix = [row for row in matrix[1:]]
+            new_matrix = transpose_matrix(new_matrix)
+            for i in range(n):
+                pivot = matrix[0][i]     
+                cols_to_select = [j for j in range(n) if j != i]
+                minor_matrix = transpose_matrix([new_matrix[col] for col in cols_to_select]) 
+
+                if i % 2 == 0: # cofactor is positive
+                    det += pivot * determinant(minor_matrix)
+                else: # cofactor is negative
+                    det -= pivot * determinant(minor_matrix)  
+
+            return det
 
 
 
 def determinant_rowreduction(matrix: list) -> float:
-    pass
+    """
+    todo: indfør check om matrix er triangulær
+    """
+    tmp = [row for row in matrix]
+    m,n = get_size(matrix)
+
+    if m != n:
+        raise ValueError("Non-square matrices do not have determinants!") 
+    
+    else:
+        for i in range(n - 1): 
+            var = tmp[i][i]
+            for j in range(i + 1, n):
+                multiplier = tmp[j][i] / var
+                for k in range(n):
+                    tmp[j][k] -= (multiplier * tmp[i][k])
+        det = 1
+
+        for i in range(n):
+            det *= tmp[i][i]
+
+        return det
 
 
 
@@ -454,7 +482,9 @@ def main():
     for line in A:
         print(line)
 
-    print(equation_of_line_two_points(A))
+    detA = determinant_rowreduction(A)
+
+    print(detA)
 
 if __name__ == '__main__':
     main()
