@@ -2,7 +2,7 @@
 
 
 
-def read_matrix(filename):
+def read_matrix(filename: str) -> list:
     """
     Reads a .txt-file containing whitespace-separated numeric values in the following form:
     3 3 -2 11
@@ -19,7 +19,7 @@ def read_matrix(filename):
 
 
     
-def _validate(matrix):
+def _validate(matrix: list) -> bool:
     """
     Utility function to validate whether a matrix has an equal number of entries in each row. Returns
     true if given matrix is indeed valid and false otherwise.
@@ -31,7 +31,7 @@ def _validate(matrix):
 
 
 
-def get_size(matrix):
+def get_size(matrix: list) -> list:
     """
     Returns a list [m,n] where m is the number of rows and n is the number of columns of the input
     matrix.
@@ -40,7 +40,7 @@ def get_size(matrix):
 
 
 
-def get_rank(matrix):
+def get_rank(matrix: list) -> int:
     """
     Rewrites a matrix to row-echelon form, counts the number of non-zero rows 
     which is returned as the rank of the matrix.
@@ -56,7 +56,7 @@ def get_rank(matrix):
 
 
 
-def tidy_up(matrix):
+def tidy_up(matrix: -> list) -> list:
     """
     Utility-function to tidy up the contents of a matrix by rounding floats to integers
     where possible or to a maximum of three decimal spaces if value is a floating point.
@@ -75,7 +75,7 @@ def tidy_up(matrix):
 
 
 
-def transpose_matrix(matrix):
+def transpose_matrix(matrix: list) -> list:
     """
     Transposes the input matrix by interchanging the rows and columns. Returns the 
     transposed matrix.
@@ -91,7 +91,7 @@ def transpose_matrix(matrix):
 
 
 
-def matrix_addition(matrix_A,matrix_B):
+def matrix_addition(matrix_A: list, matrix_B: list) -> list:
     """
     Returns the sum of two equal-sized matrices. If the input parameter matrices are not of equal
     size nothing is returned.
@@ -112,7 +112,7 @@ def matrix_addition(matrix_A,matrix_B):
 
 
 
-def matrix_subtraction(matrix_A,matrix_B):
+def matrix_subtraction(matrix_A: list, matrix_B: list) -> list:
     """
     Returns the difference between two equal-sized matrices. If the input parameter matrices are not of equal
     size nothing is returned.
@@ -133,7 +133,7 @@ def matrix_subtraction(matrix_A,matrix_B):
 
 
 
-def scalar_multiply(matrix,scalar) -> list:
+def scalar_multiply(matrix: list, scalar: float) -> list:
     """
     Returns input parameter matrix  multiplied by a scalar
     """
@@ -145,7 +145,7 @@ def scalar_multiply(matrix,scalar) -> list:
 
 
 
-def dot_product(matrix_A,matrix_B) -> list:
+def dot_product(matrix_A: list, matrix_B: list) -> list:
     """
     Returns the product of matrix_A multiplied by matrix_B in this order. 
     Returns nothing if product is not defined - that is matrix_A not having
@@ -190,7 +190,7 @@ def create_identity_matrix(order: int) -> list:
 
 
 
-def reduced_row_echelon(matrix):
+def reduced_row_echelon(matrix: list) -> list:
     """
 
     """
@@ -242,7 +242,7 @@ def reduced_row_echelon(matrix):
 
 
 
-def invert_matrix(matrix):
+def invert_matrix(matrix: list):
     """
     Takes a matrix as parameter, returns nothing if parameter matrix is nonsquare and thus non-invertible.
     The function then proceeds to check if the equation system has exactly one solution, and if not it will return 
@@ -284,9 +284,10 @@ def invert_matrix(matrix):
 
 
 
-def determinant(matrix) -> float:
+def determinant(matrix: list) -> float:
     """
-    
+    This function takes an n x n matrix as a list of nested lists as input. It then 
+    calculates and returns its determinant by use of cofactor expansion.
     """
     m,n = get_size(matrix)
 
@@ -309,6 +310,13 @@ def determinant(matrix) -> float:
             else: # cofactor is negative
                 det -= pivot * determinant(minor_matrix)         
         return det
+
+
+
+def determinant_rowreduction(matrix: list) -> float:
+    pass
+
+
 
 """
 APPLICATIONS
@@ -414,7 +422,7 @@ def test_for_colinearity_xy(matrix) -> bool:
     """
     This function takes a 3 x 2 matrix as list of nested lists representing 
     three coordinates in the xy-plane as input. It then evalutes and returns 
-    whether the coordinates are colinear.
+    whether the coordinates are collinear.
     """
     tmp = []
 
@@ -424,7 +432,20 @@ def test_for_colinearity_xy(matrix) -> bool:
     return determinant(tmp) == 0
 
 
+
 def equation_of_line_two_points(matrix) -> list:
+    """
+    This function takes a 2 x 2 matrix as a list of nested lists representing
+    two coordinates in the xy-plane as input. It returns the equation for the
+    line passing through the two points as a list of the coefficients for
+    x,y and b.
+    """
+    transposed_input = transpose_matrix(matrix)
+    x = determinant([transposed_input[1],[1,1]])
+    y = -1 * determinant([transposed_input[0],[1,1]])
+    b = determinant(matrix)
+
+    return [x,y,b]
 
 
 
@@ -433,7 +454,7 @@ def main():
     for line in A:
         print(line)
 
-    print(test_for_colinearity_xy(A))
+    print(equation_of_line_two_points(A))
 
 if __name__ == '__main__':
     main()
