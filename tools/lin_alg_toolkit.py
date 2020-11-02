@@ -257,7 +257,7 @@ def reduced_row_echelon(matrix: list) -> list:
 
 
 
-def invert_matrix(matrix: list):
+def invert_matrix(matrix: list) -> list:
     """
     Takes a matrix as parameter, returns nothing if parameter matrix is nonsquare and thus non-invertible.
     The function then proceeds to check if the equation system has exactly one solution, and if not it will return 
@@ -366,7 +366,7 @@ def determinant_rowreduction(matrix: list) -> float:
 APPLICATIONS
 """
 
-def polynomial_curve_fitting(matrix):
+def polynomial_curve_fitting(matrix: list) -> list:
     """
     This function takes a list of nested lists as its input parameter
     where each nested list should have two numeric value entries representing
@@ -396,7 +396,7 @@ def polynomial_curve_fitting(matrix):
 
 
 
-def least_squares_regression(matrix) -> list:
+def least_squares_regression(matrix: list) -> list:
     """
     This function takes a list of nested lists as its input parameter
     where each nested list should have two numeric value entries representing
@@ -431,7 +431,7 @@ def least_squares_regression(matrix) -> list:
 
 
 
-def area_of_triangle(matrix) -> float:
+def area_of_triangle(matrix: list) -> float:
     """
     This function takes a 3 x 2 matrix as a list of nested lists representing
     the xy-coordinates of the vertices of a triangle as inpit. It then calculates 
@@ -445,7 +445,7 @@ def area_of_triangle(matrix) -> float:
     
 
 
-def volume_of_tetrahedon(matrix) -> float:
+def volume_of_tetrahedon(matrix: list) -> float:
     """
     This function takes a 4 x 3 matrix as a list of nested lists representing 
     the xyz-coordinates of the vertices of a tetrahedon as input. It then 
@@ -459,7 +459,7 @@ def volume_of_tetrahedon(matrix) -> float:
     
 
 
-def test_for_colinearity_xy(matrix) -> bool:
+def test_for_colinearity_xy(matrix: list) -> bool:
     """
     This function takes a 3 x 2 matrix as list of nested lists representing 
     three coordinates in the xy-plane as input. It then evalutes and returns 
@@ -473,7 +473,7 @@ def test_for_colinearity_xy(matrix) -> bool:
 
 
 
-def equation_of_line_two_points(matrix) -> list:
+def equation_of_line_two_points(matrix: list) -> list:
     """
     This function takes a 2 x 2 matrix as a list of nested lists representing
     two coordinates in the xy-plane as input. It returns the equation for the
