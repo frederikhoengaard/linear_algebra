@@ -388,7 +388,7 @@ def area_of_triangle(matrix) -> float:
     for coordinate in matrix:
         tmp.append([coordinate[0],coordinate[1],1])
 
-    area = 0.5 * determinant(tmp)
+    area = (1 / 2) * determinant(tmp)
     if area < 0:
         return -1 * area
     else:
@@ -398,16 +398,22 @@ def area_of_triangle(matrix) -> float:
 
 def volume_of_tetrahedon(matrix) -> float:
     tmp = []
-    
 
-    
+    for coordinate in matrix:
+        tmp.append([coordinate[0],coordinate[1],coordinate[2],1])
+
+    volume = (1 / 6) * determinant(tmp)
+    if volume < 0:
+        return -1 * volume
+    else:
+        return volume
 
 def main():
     A = read_matrix('tmp_data.txt')
     for line in A:
         print(line)
 
-    print(area_of_triangle(A))
+    print(volume_of_tetrahedon(A))
 
 if __name__ == '__main__':
     main()
