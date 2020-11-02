@@ -381,7 +381,9 @@ def least_squares_regression(matrix) -> list:
 
 def area_of_triangle(matrix) -> float:
     """
-
+    This function takes a 3 x 2 matrix as a list of nested lists representing
+    the xy-coordinates of the vertices of a triangle as inpit. It then calculates 
+    and returns the area of the triangle.
     """
     tmp = []
 
@@ -394,6 +396,11 @@ def area_of_triangle(matrix) -> float:
 
 
 def volume_of_tetrahedon(matrix) -> float:
+    """
+    This function takes a 4 x 3 matrix as a list of nested lists representing 
+    the xyz-coordinates of the vertices of a tetrahedon as input. It then 
+    calculates and returns the volume of the tetrahedon.
+    """
     tmp = []
 
     for coordinate in matrix:
@@ -402,12 +409,31 @@ def volume_of_tetrahedon(matrix) -> float:
     return abs((1 / 6) * determinant(tmp))
     
 
+
+def test_for_colinearity_xy(matrix) -> bool:
+    """
+    This function takes a 3 x 2 matrix as list of nested lists representing 
+    three coordinates in the xy-plane as input. It then evalutes and returns 
+    whether the coordinates are colinear.
+    """
+    tmp = []
+
+    for coordinate in matrix:
+        tmp.append([coordinate[0],coordinate[1],1])
+
+    return determinant(tmp) == 0
+
+
+def equation_of_line_two_points(matrix) -> list:
+
+
+
 def main():
     A = read_matrix('tmp_data.txt')
     for line in A:
         print(line)
 
-    print(area_of_triangle(A))
+    print(test_for_colinearity_xy(A))
 
 if __name__ == '__main__':
     main()
