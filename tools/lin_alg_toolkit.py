@@ -31,6 +31,18 @@ def _validate(matrix: list) -> bool:
 
 
 
+def _test_triangular(matrix: list) -> bool:
+    m,n = get_size(matrix)
+    if m != n:
+        raise ValueError('Non-square matrices cannot be triangular!')
+
+    for i in range(1,n):
+        for k in range(0,i):
+            if matrix[i][k] != 0:
+                return False
+    return True
+
+
 def get_size(matrix: list) -> list:
     """
     Returns a list [m,n] where m is the number of rows and n is the number of columns of the input
@@ -237,7 +249,6 @@ def reduced_row_echelon(matrix: list) -> list:
                 augmented_matrix[variable] = augmented_matrix[i]
                 augmented_matrix[i] = tmp
                 break
-   
     return augmented_matrix
 
 
@@ -315,14 +326,17 @@ def determinant(matrix: list) -> float:
                     det += pivot * determinant(minor_matrix)
                 else: # cofactor is negative
                     det -= pivot * determinant(minor_matrix)  
-
             return det
 
 
 
 def determinant_rowreduction(matrix: list) -> float:
     """
-    todo: indfør check om matrix er triangulær
+    This function takes an n x n matrix as a list of nested lists as input. 
+    It then checks if the given matrix is triangular and if not makes it so
+    by row reduction. 
+    It returns the determinant of the triangular matrix calculated as the product 
+    of the elements of its main diagonal.  
     """
     tmp = [row for row in matrix]
     m,n = get_size(matrix)
@@ -333,15 +347,14 @@ def determinant_rowreduction(matrix: list) -> float:
     else:
         for i in range(n - 1): 
             var = tmp[i][i]
-            for j in range(i + 1, n):
-                multiplier = tmp[j][i] / var
-                for k in range(n):
-                    tmp[j][k] -= (multiplier * tmp[i][k])
+            if var != 0:
+                for j in range(i + 1, n):
+                    multiplier = tmp[j][i] / var
+                    for k in range(n):
+                        tmp[j][k] -= (multiplier * tmp[i][k])
         det = 1
-
         for i in range(n):
             det *= tmp[i][i]
-
         return det
 
 
@@ -425,10 +438,8 @@ def area_of_triangle(matrix) -> float:
 
     for coordinate in matrix:
         tmp.append([coordinate[0],coordinate[1],1])
-
     return abs((1 / 2) * determinant(tmp))
     
-
 
 
 def volume_of_tetrahedon(matrix) -> float:
@@ -441,7 +452,6 @@ def volume_of_tetrahedon(matrix) -> float:
 
     for coordinate in matrix:
         tmp.append([coordinate[0],coordinate[1],coordinate[2],1])
-
     return abs((1 / 6) * determinant(tmp))
     
 
@@ -456,7 +466,6 @@ def test_for_colinearity_xy(matrix) -> bool:
 
     for coordinate in matrix:
         tmp.append([coordinate[0],coordinate[1],1])
-
     return determinant(tmp) == 0
 
 
@@ -472,19 +481,15 @@ def equation_of_line_two_points(matrix) -> list:
     x = determinant([transposed_input[1],[1,1]])
     y = -1 * determinant([transposed_input[0],[1,1]])
     b = determinant(matrix)
-
     return [x,y,b]
 
 
 
 def main():
     A = read_matrix('tmp_data.txt')
-    for line in A:
-        print(line)
 
-    detA = determinant_rowreduction(A)
 
-    print(detA)
+    _test_triangular(A)
 
 if __name__ == '__main__':
     main()

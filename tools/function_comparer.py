@@ -35,4 +35,7 @@ for filename in test_files:
     print('\n')
     B = test_function(lin_alg_toolkit.determinant_rowreduction,matrix)
 
+    if A != B:
+        print('ERROR: Functions returning different results!')
+
     print('\n ==============================================')
