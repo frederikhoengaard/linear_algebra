@@ -133,7 +133,7 @@ def matrix_subtraction(matrix_A,matrix_B):
 
 
 
-def scalar_multiply(matrix,scalar):
+def scalar_multiply(matrix,scalar) -> list:
     """
     Returns input parameter matrix  multiplied by a scalar
     """
@@ -145,7 +145,7 @@ def scalar_multiply(matrix,scalar):
 
 
 
-def dot_product(matrix_A,matrix_B):
+def dot_product(matrix_A,matrix_B) -> list:
     """
     Returns the product of matrix_A multiplied by matrix_B in this order. 
     Returns nothing if product is not defined - that is matrix_A not having
@@ -173,7 +173,7 @@ def dot_product(matrix_A,matrix_B):
 
 
 
-def create_identity_matrix(order: int):
+def create_identity_matrix(order: int) -> list:
     """
     Returns the identity matrix of a given order as a list of lists.
     """
@@ -284,7 +284,7 @@ def invert_matrix(matrix):
 
 
 
-def determinant(matrix):
+def determinant(matrix) -> float:
     """
     
     """
@@ -344,7 +344,7 @@ def polynomial_curve_fitting(matrix):
 
 
 
-def least_squares_regression(matrix):
+def least_squares_regression(matrix) -> list:
     """
     This function takes a list of nested lists as its input parameter
     where each nested list should have two numeric value entries representing
@@ -377,13 +377,37 @@ def least_squares_regression(matrix):
         error_sum += ((b + coordinate[0] * a) - coordinate[1]) ** 2
     return [b,a,error_sum]
 
+
+
+def area_of_triangle(matrix) -> float:
+    """
+
+    """
+    tmp = []
+
+    for coordinate in matrix:
+        tmp.append([coordinate[0],coordinate[1],1])
+
+    return abs((1 / 2) * determinant(tmp))
+    
+
+
+
+def volume_of_tetrahedon(matrix) -> float:
+    tmp = []
+
+    for coordinate in matrix:
+        tmp.append([coordinate[0],coordinate[1],coordinate[2],1])
+
+    return abs((1 / 6) * determinant(tmp))
     
 
 def main():
-    A = read_matrix('test_data/test_determinant/3.1_41.txt')
-   # print(get_size(A))
-    
-    print(determinant(A))
+    A = read_matrix('tmp_data.txt')
+    for line in A:
+        print(line)
+
+    print(area_of_triangle(A))
 
 if __name__ == '__main__':
     main()
