@@ -32,6 +32,10 @@ def _validate(matrix: list) -> bool:
 
 
 def _test_triangular(matrix: list) -> bool:
+    """
+    Utility function to test whether a give matrix is upper-triangular.
+    Returns true if upper-triangular and false otherwise.
+    """
     m,n = get_size(matrix)
     if m != n:
         raise ValueError('Non-square matrices cannot be triangular!')
@@ -333,8 +337,7 @@ def determinant(matrix: list) -> float:
 def determinant_rowreduction(matrix: list) -> float:
     """
     This function takes an n x n matrix as a list of nested lists as input. 
-    It then checks if the given matrix is triangular and if not makes it so
-    by row reduction. 
+
     It returns the determinant of the triangular matrix calculated as the product 
     of the elements of its main diagonal.  
     """
@@ -438,7 +441,7 @@ def area_of_triangle(matrix) -> float:
 
     for coordinate in matrix:
         tmp.append([coordinate[0],coordinate[1],1])
-    return abs((1 / 2) * determinant(tmp))
+    return abs((1 / 2) * determinant_rowreduction(tmp))
     
 
 
@@ -452,7 +455,7 @@ def volume_of_tetrahedon(matrix) -> float:
 
     for coordinate in matrix:
         tmp.append([coordinate[0],coordinate[1],coordinate[2],1])
-    return abs((1 / 6) * determinant(tmp))
+    return abs((1 / 6) * determinant_rowreduction(tmp))
     
 
 
@@ -466,7 +469,7 @@ def test_for_colinearity_xy(matrix) -> bool:
 
     for coordinate in matrix:
         tmp.append([coordinate[0],coordinate[1],1])
-    return determinant(tmp) == 0
+    return determinant_rowreduction(tmp) == 0
 
 
 
@@ -478,9 +481,9 @@ def equation_of_line_two_points(matrix) -> list:
     x,y and b.
     """
     transposed_input = transpose_matrix(matrix)
-    x = determinant([transposed_input[1],[1,1]])
-    y = -1 * determinant([transposed_input[0],[1,1]])
-    b = determinant(matrix)
+    x = determinant_rowreduction([transposed_input[1],[1,1]])
+    y = -1 * determinant_rowreduction([transposed_input[0],[1,1]])
+    b = determinant_rowreduction(matrix)
     return [x,y,b]
 
 
@@ -488,8 +491,6 @@ def equation_of_line_two_points(matrix) -> list:
 def main():
     A = read_matrix('tmp_data.txt')
 
-
-    _test_triangular(A)
 
 if __name__ == '__main__':
     main()
