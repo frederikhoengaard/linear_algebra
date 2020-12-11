@@ -501,11 +501,28 @@ def equation_of_line_two_points(matrix: list) -> list:
 
 
 
+def euclidean_distance_points(point_A: list, point_B: list) -> float:
+    """
+    This function takes two n-dimensional points as lists as its input parameters.
+    It calculates an returns the euclidean distance between the points.
+    """
+    if len(point_A) != len(point_B):
+        raise ValueError('Input parameters not of same dimension!')
+
+    dist = 0
+    n_dimensions = len(point_A)
+    for i in range(n_dimensions):
+        dist += (point_A[i] - point_B[i]) ** 2
+    return dist ** 0.5
+
+
+
 def main():
     A = read_csv('test_data.csv',delimiter=',')
 
-    for line in A:
-        print(line)
+    #for line in A:
+     #   print(line)
+
     
 
 
