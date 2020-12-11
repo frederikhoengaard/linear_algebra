@@ -18,7 +18,20 @@ def read_matrix(filename: str) -> list:
         return matrix
 
 
+
+def read_csv(filename: str, delimiter=',', skiprows=0) -> list:
+    """
+    Reads text-file like .txt or .csv with default delimiter as comma. The function will take arbitrary
+    unescaped delimiters.
+
+    """
+    infile = open(filename,'r')
+    matrix = [list(map(float,line.split(delimiter))) for line in infile.readlines()[skiprows:]]
+    if _validate(matrix):
+        return matrix
+
     
+
 def _validate(matrix: list) -> bool:
     """
     Utility function to validate whether a matrix has an equal number of entries in each row. Returns
@@ -489,7 +502,11 @@ def equation_of_line_two_points(matrix: list) -> list:
 
 
 def main():
-    A = read_matrix('tmp_data.txt')
+    A = read_csv('test_data.csv',delimiter=',')
+
+    for line in A:
+        print(line)
+    
 
 
 if __name__ == '__main__':
